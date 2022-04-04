@@ -40,6 +40,8 @@
     }
 </style>
 <script type="text/babel">
+    const rootElement = ReactDOM.createRoot(document.getElementById('root'))
+
     function Tilt({children}) {
         const tiltRef = React.useRef()
 
@@ -85,6 +87,6 @@
         )
     }
 
-    ReactDOM.render(<App/>, document.getElementById('root'))
+    rootElement.render(<App/>)
 </script>
 </body>
