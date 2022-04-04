@@ -1,0 +1,39 @@
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.0.0/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+<script type="text/babel">
+    const rootElement = ReactDOM.createRoot(document.getElementById('root'))
+
+    function Greeting() {
+        const [name, setName] = React.useState(() => window.localStorage.getItem('name') || '')
+
+        React.useEffect(() => {
+            window.localStorage.setItem('name', name)
+        }, [name])
+
+        const handlerChange = event => setName(event.target.value)
+
+        return <div>
+            <form>
+                <label htmlFor="name">Name: </label>
+                <input id="name" value={name} onChange={handlerChange}/>
+            </form>
+            {name ? <strong> Hola {name}</strong> : 'Introduce tu nombre'}
+        </div>
+    }
+
+    function App() {
+        const [count, setCount] = React.useState(0)
+        return (
+            <>
+                <button onClick={() => setCount(c => c + 1)}>{count}</button>
+                <Greeting/>
+            </>
+        )
+    }
+
+    rootElement.render(<App/>)
+</script>
+</body>
